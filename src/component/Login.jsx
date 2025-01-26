@@ -13,7 +13,7 @@ const Login = ({user,setUser,getProducts,setIsLogin}) => {
       getProducts()
     } catch (error) {
       console.log(error);
-      alert(error.response.data.message)
+      alert(error?.response?.data?.message)
       
     }
   }
