@@ -1,5 +1,9 @@
 import axios from "axios"
 
+const api = import.meta.env.VITE_BASE_URL
+const path = import.meta.env.VITE_API_PATH
+
+
 // 登入
 const Login = ({user,setUser,getProducts,setIsLogin}) => {
   // 登入 API
