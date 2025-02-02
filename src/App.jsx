@@ -27,6 +27,7 @@ function App() {
     is_enabled: 0,
     imagesUrl: [""],
     tags:[],
+    stockQty: 0
   })
   const [isLogin, setIsLogin] = useState(false)
   const [products,setProducts] = useState([])   // 產品列表
@@ -80,6 +81,7 @@ function App() {
       is_enabled: 0,
       imagesUrl: [""],
       tags:[],
+      stockQty: 0
     })
     addModal.current = new bootstrap.Modal(addModalRef.current)
     addModal.current.show()
@@ -101,6 +103,7 @@ function App() {
       is_enabled:productData.is_enabled || 0 ,
       imagesUrl: productData.imagesUrl || [""],
       tags:productData.tags || [],
+      stockQty: productData.stockQty || 0
     })
     addModal.current = new bootstrap.Modal(addModalRef.current)
     addModal.current.show()
@@ -115,17 +118,20 @@ function App() {
       const res =  await axios.get(`${api}/v2/api/${path}/admin/products?page=${page}`)
       setProducts(res.data.products)
       setPagination(res.data.pagination)
+      console.log(res);
+      
     } catch (error) {
       console.log(error);
     }
   }
   
-  async function handleDelete (id){
+  // 刪除產品
+  async function handleDelete (id,e){
     if(isSubmittingDelete) return
     setIsSubmittingDelete(true)
     try {
       const res = await axios.delete(`${api}/v2/api/${path}/admin/product/${id}`)
-      getProducts()
+      getProducts(e,pagination.current_page)
       alert('成功刪除')
       setIsSubmittingDelete(false)
     } catch (error) {

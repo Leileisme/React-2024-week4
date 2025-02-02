@@ -46,8 +46,8 @@ const ProductList = ({products,openEditModal,handleDelete}) => {
                   </td>
                 <td>
                   <button type='button' className='btn btn-outline-primary me-2' onClick={()=>{openEditModal(item)}}>編輯</button>
-                  <button type='button' className='btn btn-outline-danger' onClick={()=>{
-                    handleDelete(item.id)
+                  <button type='button' className='btn btn-outline-danger' onClick={(e)=>{
+                    handleDelete(item.id,e)
                   }}>刪除</button>
                 </td>
               </tr>

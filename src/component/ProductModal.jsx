@@ -42,6 +42,7 @@ const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,
         is_enabled: 0,
         imagesUrl: [""],
         tags:[],
+        stockQty: 0
       })
     addModal.current.hide()
     setIsEdit(false)
@@ -59,7 +60,7 @@ const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,
     const upDatedCheckbox = (type === "checkbox" ? (checked ? 1 : 0) : value )
     setProduct({
       ...product,
-      [name]: name === "origin_price" || name === "price" 
+      [name]: name === "origin_price" || name === "price" || name === "stockQty"
       ? Number(value) 
       : upDatedCheckbox
     })
@@ -224,9 +225,14 @@ const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,
                           <input type="text" id="category" className='form-control form-control-sm' name='category'onChange={handleProductChange} value={product.category || ''} />
                       </div>
 
-                      <div className="col-12 mb-3">
+                      <div className="col-6 mb-3">
                           <label htmlFor="unit" className='form-label'>單位</label>
                           <input type="text" id="unit" className='form-control form-control-sm' name='unit'onChange={handleProductChange} value={product.unit || ''} />
+                      </div>
+
+                      <div className="col-6 mb-3">
+                          <label htmlFor="stockQty" className='form-label'>數量</label>
+                          <input type="number" min="0" id="stockQty" className='form-control form-control-sm' name='stockQty'onChange={handleProductChange} value={product.stockQty || ''} />
                       </div>
 
 
@@ -247,7 +253,7 @@ const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,
                       </div>
                       
                       <div className="col-12 mb-3">
-                          <label htmlFor="content" className='form-label'>說明內容</label>
+                          <label htmlFor="content" className='form-label'>產品說明</label>
                           <textarea type="text" id="content" className='form-control form-control-sm' name='content'onChange={handleProductChange} value={product.content || ''} />
                       </div>
 
