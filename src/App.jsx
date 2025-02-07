@@ -130,7 +130,7 @@ function App() {
     if(isSubmittingDelete) return
     setIsSubmittingDelete(true)
     try {
-      const res = await axios.delete(`${api}/v2/api/${path}/admin/product/${id}`)
+      await axios.delete(`${api}/v2/api/${path}/admin/product/${id}`)
       getProducts(e,pagination.current_page)
       alert('成功刪除')
       setIsSubmittingDelete(false)

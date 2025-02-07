@@ -6,7 +6,7 @@ const api = import.meta.env.VITE_BASE_URL
 const path = import.meta.env.VITE_API_PATH
 
 // 產品 Modal Template
-const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,getProducts,pagination}) => {
+const ProductModal= ({ addModalRef, addModal, product, setProduct, isEdit, setIsEdit, getProducts, pagination }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const fileInputRef = useRef(null)
   const [currentTag,setCurrentTag] = useState("")
@@ -25,7 +25,7 @@ const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,
     try {
       const url = isEdit ? `${api}/v2/api/${path}/admin/product/${product.id}` : `${api}/v2/api/${path}/admin/product`
       const method = isEdit ? 'put' : 'post'
-      const res = await axios[method](url,{data:product})
+      await axios[method](url,{data:product})
       
       alert(isEdit ? '編輯成功':'新增成功')
       getProducts(e,pagination.current_page)
@@ -46,11 +46,12 @@ const ProductModal= ({addModalRef,addModal,product,setProduct,isEdit, setIsEdit,
       })
     addModal.current.hide()
     setIsEdit(false)
-    setIsSubmitting(false)
     fileInputRef.current.value = ''
     } catch (error) {
       console.log(error);
       alert(error?.response?.data?.message)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 

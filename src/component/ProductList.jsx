@@ -1,5 +1,5 @@
 // 產品列表
-const ProductList = ({products,openEditModal,handleDelete}) => {
+const ProductList = ({ products, openEditModal, handleDelete }) => {
   return(
     <>
       <table className='table'>
